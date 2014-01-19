@@ -255,6 +255,7 @@ body {
 .canvas-cell {
   display: table-cell;
   height: 100%;
+  min-height:400px;
   position: relative; }
   /* line 54, _components.scss */
   .intro .canvas-cell {
