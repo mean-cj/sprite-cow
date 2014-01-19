@@ -61,7 +61,7 @@ spriteCow.CssOutput = (function() {
 		
 		$code
 			.append('\n\n')
-			.append( $('<span class="selector"/>').text(this.selector) )
+			.append( $('<span class="selector"/>').text(this.selector +'_'+  ( CountClick)) )
 			.append(' {\n');
 		
 		if (this.useBgUrl && this.backgroundFileName) {
