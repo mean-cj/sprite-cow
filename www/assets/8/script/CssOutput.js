@@ -1,3 +1,6 @@
+var CountClick = 0;
+var CheckInArrayLists = [];
+
 spriteCow.CssOutput = (function() {
 	function pxVal(val) {
 		val = Math.round(val);
@@ -45,7 +48,18 @@ spriteCow.CssOutput = (function() {
 		var heightMultiplier = this.bgSize ? this.scaledHeight / this.imgHeight : 1;
 		var $file;
 		
-		$code.empty()
+		
+		var MatchNumber = pxVal(-rect.x * widthMultiplier) + pxVal(-rect.y * heightMultiplier);
+		if ( $.inArray( MatchNumber, CheckInArrayLists ) >= 0 )
+		{
+			return ;
+		}
+		CheckInArrayLists.push(MatchNumber);
+		
+		
+		
+		$code
+			.append('\n\n')
 			.append( $('<span class="selector"/>').text(this.selector) )
 			.append(' {\n');
 		
