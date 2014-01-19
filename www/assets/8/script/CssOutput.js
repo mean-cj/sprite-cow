@@ -49,6 +49,7 @@ spriteCow.CssOutput = (function() {
 		var $file;
 		
 		
+		
 		var MatchNumber = pxVal(-rect.x * widthMultiplier) + pxVal(-rect.y * heightMultiplier);
 		if ( $.inArray( MatchNumber, CheckInArrayLists ) >= 0 )
 		{
