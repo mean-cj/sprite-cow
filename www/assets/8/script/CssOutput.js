@@ -18,7 +18,7 @@ spriteCow.CssOutput = (function() {
 		var multiplier = Math.pow(10, afterDecimal || 0);
 		return Math.round(num * multiplier) / multiplier;
 	}
-	
+
 	function CssOutput($appendTo) {
 		var $container = $('<div class="css-output"></div>').appendTo( $appendTo );
 		this._$container = $container;
@@ -37,9 +37,9 @@ spriteCow.CssOutput = (function() {
 		this.selector = '.sprite';
 		this._addEditEvents();
 	}
-	
+
 	var CssOutputProto = CssOutput.prototype;
-	
+
 	CssOutputProto.update = function() {
 		var indent = this.useTabs ? '\t' : '    ';
 		var rect = this.rect;
@@ -47,29 +47,28 @@ spriteCow.CssOutput = (function() {
 		var widthMultiplier = this.bgSize ? this.scaledWidth / this.imgWidth : 1;
 		var heightMultiplier = this.bgSize ? this.scaledHeight / this.imgHeight : 1;
 		var $file;
-		
-		
-		
+
+
 		var MatchNumber = pxVal(-rect.x * widthMultiplier) + pxVal(-rect.y * heightMultiplier);
 		if ( $.inArray( MatchNumber, CheckInArrayLists ) >= 0 )
 		{
 			return ;
 		}
 		CheckInArrayLists.push(MatchNumber);
-		
-		
-		
+
+		CountClick++;
+
 		$code
 			.append('\n\n')
 			.append( $('<span class="selector"/>').text(this.selector +'_'+  ( CountClick)) )
 			.append(' {\n');
-		
+
 		if (this.useBgUrl && this.backgroundFileName) {
 			$code.append( indent + "background: url('" );
 			$file = $('<span class="file"/>')
 				.append( $('<span data-inline-edit="file-path"/>').text( this.path ) )
 				.append( $('<span class="file-name"/>').text( this.backgroundFileName ) );
-			
+
 			$code.append( $file ).append( "') no-repeat " );
 		}
 		else {
@@ -96,14 +95,14 @@ spriteCow.CssOutput = (function() {
 				pxVal(this.scaledHeight) + ';\n'
 			);
 		}
-		
+
 		$code.append(
 			indent + 'width: ' + pxVal(rect.width * widthMultiplier) + ';\n' +
 			indent + 'height: ' + pxVal(rect.height * heightMultiplier) + ';\n' +
 			'}'
 		);
 	};
-	
+
 	CssOutputProto._addEditEvents = function() {
 		var cssOutput = this;
 
@@ -114,7 +113,7 @@ spriteCow.CssOutput = (function() {
 			localStorage.setItem('cssOutputPath', newVal);
 		});
 	};
-	
+
 	return CssOutput;
 })();
 
